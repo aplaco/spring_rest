@@ -23,9 +23,10 @@ public class JoinController {
     public Map<String, Object> create(@RequestBody JoinDTO formDTO ){
         String result = joinService.processJoin(formDTO);
 
-       Map<String, Object> response =  new HashMap<>();
-       response.put("message", result);
-        return response;    }
+        Map<String, Object> response =  new HashMap<>();
+        response.put("message", result);
+        return response;
+    }
 
 
 
@@ -47,22 +48,22 @@ public class JoinController {
         return result;
     }
 
-    @GetMapping("/admin/del/{id}")
+    @DeleteMapping("/admin/del/{id}")
     public Map<String, String> delUser(@PathVariable Long id){
         joinService.delete(id);
         Map<String, String> result = new HashMap<>();
         result.put("message", "삭제 성공");
         return result;
     }
-    
+
 
     @GetMapping("/admin/edit/{id}")
     public JoinEntity editUser(@PathVariable Long id){
-       return joinService.getUserById(id);
+        return joinService.getUserById(id);
     }
 
 
-    @PostMapping("/admin/update")
+    @PutMapping("/admin/update")
     public Map<String, String> updateUser(@RequestBody JoinEntity formUser){
         joinService.updateUser(formUser);
 
